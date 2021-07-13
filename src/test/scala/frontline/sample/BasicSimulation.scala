@@ -25,7 +25,6 @@ class BasicSimulation extends Simulation {
         .get("/computers?p=1")
     )
 
-  setUp(
-    scn.inject(rampUsers(10).during(10.seconds))
-  ).protocols(httpConf)
+  setUp(scn.inject(constantConcurrentUsers(1) during(60.second))).maxDuration(1.minutes).protocols(httpConf)
+
 }
